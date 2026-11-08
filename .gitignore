@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+# Experiment outputs (large / regenerable) — never commit
+outputs/
+runs/
+data/
+checkpoints/
+*.safetensors
+adapter/
+adapter_model.*
+*.bin
+*.pt
+*.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets
+.env
+*.env
+*.pem
+*.key

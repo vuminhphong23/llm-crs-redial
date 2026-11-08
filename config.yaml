@@ -1,0 +1,41 @@
+# Cau hinh DUY NHAT cho moi buoc thuc nghiem. Doi backbone = doi 1 dong nay,
+# roi chay lai tat ca.
+# Trang thai 2026-11-08: backbone Qwen2.5-7B-Instruct do Phong chot
+# (da bao cao GVHD; co Thu van co the doi).
+
+model:
+  # Ten tren Hugging Face Hub, giay phep Apache 2.0
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  # Colab Free (T4 ~15GB) bat buoc 4-bit. Neu duoc GPU >= 24GB thi dat false.
+  load_in_4bit: true
+  dtype: "bfloat16"
+  max_new_tokens: 200
+  temperature: 0.0   # danh gia phai tat nhien (deterministic), khong lay mau
+
+data:
+  # Link zip chinh thuc, da kiem chung tai duoc ngay 2026-11-06
+  redial_zip_url: "https://github.com/ReDialData/website/raw/data/redial_dataset.zip"
+  seed: 42
+  # File train goc 10.006 hoi thoai (dung de train + chon model) se chia 90/10.
+  # File test goc 1.342 hoi thoai GIU NGUYEN, chi chay 1 lan cho cau hinh cuoi.
+  valid_fraction: 0.10
+  # So ung vien trong bai ranking: 1 dap an dung + 99 phim khac (seed co dinh)
+  n_candidates: 100
+  # So vi du toi da cho 1 lan chay thu (smoke test). Dat null de chay het.
+  max_examples_smoke_test: 20
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  learning_rate: 0.0002
+  epochs: 1
+  per_device_batch: 1
+  grad_accum: 16
+  max_len: 1024
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+
+paths:
+  data_dir: "data"
+  runs_dir: "runs"
+  output_dir: "outputs"

@@ -1,0 +1,36 @@
+{
+  "command": "03_prompting_baseline.py --split valid --n 200 --mode rag",
+  "config": {
+    "model": {
+      "name": "Qwen/Qwen2.5-7B-Instruct",
+      "load_in_4bit": true,
+      "dtype": "bfloat16",
+      "max_new_tokens": 200,
+      "temperature": 0.0
+    },
+    "data": {
+      "n_candidates": 100,
+      "redial_zip_url": "https://github.com/ReDialData/website/raw/data/redial_dataset.zip",
+      "seed": 42,
+      "valid_fraction": 0.1,
+      "max_examples_smoke_test": 20
+    }
+  },
+  "split": "valid",
+  "mode": "rag",
+  "n": 200,
+  "metrics": {
+    "n": 200,
+    "Recall@1": 0.0,
+    "NDCG@1": 0.0,
+    "Recall@10": 0.015,
+    "NDCG@10": 0.008090333471254686,
+    "Recall@50": 0.015,
+    "NDCG@50": 0.008090333471254686,
+    "MRR@10": 0.005833333333333334,
+    "retrieval_recall@100": 0.02
+  },
+  "predictions_file": "outputs/pred_valid_rag_n200.jsonl",
+  "metrics_file": "outputs/pred_valid_rag_n200_metrics.json",
+  "timestamp": "2026-11-06 17:44:50"
+}

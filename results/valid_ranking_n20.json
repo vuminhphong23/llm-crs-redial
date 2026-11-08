@@ -1,0 +1,35 @@
+{
+  "command": "03_prompting_baseline.py --split valid --n 20 --mode ranking",
+  "config": {
+    "model": {
+      "name": "Qwen/Qwen2.5-7B-Instruct",
+      "load_in_4bit": true,
+      "dtype": "bfloat16",
+      "max_new_tokens": 200,
+      "temperature": 0.0
+    },
+    "data": {
+      "n_candidates": 100,
+      "redial_zip_url": "https://github.com/ReDialData/website/raw/data/redial_dataset.zip",
+      "seed": 42,
+      "valid_fraction": 0.1,
+      "max_examples_smoke_test": 20
+    }
+  },
+  "split": "valid",
+  "mode": "ranking",
+  "n": 20,
+  "metrics": {
+    "n": 20,
+    "Recall@1": 0.05,
+    "NDCG@1": 0.05,
+    "Recall@10": 0.3,
+    "NDCG@10": 0.16202324269510793,
+    "Recall@50": 0.65,
+    "NDCG@50": 0.23408424553789198,
+    "MRR@10": 0.12047619047619047
+  },
+  "predictions_file": "outputs/pred_valid_ranking_n20.jsonl",
+  "metrics_file": "outputs/pred_valid_ranking_n20_metrics.json",
+  "timestamp": "2026-11-06 15:42:09"
+}
